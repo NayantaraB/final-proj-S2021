@@ -1,34 +1,30 @@
 ## Final Project: Script 1
 ### Web-scraping Weather Forecast Information with Python
-In this lab, you will work with a script that scrapes the 5-day weather forecast from the National Weather Service website. The script extracts information from multiple elements listed under the same class name using the BeautifulSoup library. 
+In Script 1, we put our web-scraping skills to use by scraping the National Weather Service (NWS) page. The goal was to obtain the 5-day weather forecast from any location in the US and rendering the output in capital letters. The script has comment codes but can be broken down in the following simple steps:
 
-- Download the `NWS_WeatherForecast.py` file and run it in your local IDE or open it, then copy/paste it into a code cell in a new Colab notebook.
+- The user is asked to enter a latitude and a longitude of any location in USA. 
 
-- Read the description and comments in the script to understand the purpose of the script
+- The script concatenates the latitude and longitude to the NWS URL (https://forecast.weather.gov/). At this point one could even check to see if the website exists. 
 
-- Run the script. You will see some packages being installed when you run it for the first time.
+- Then one could send a request to the NWS website so we can `get()` the URL and obtain information from this page. 
 
-- The script returns the 5-day forecast for Worcester, MA (Lat: 42.2634, Lon: -71.8022) with the latitude and longitude information provided. Using the latitude and longitude values, it generates the following URL through string concatenation: https://forecast.weather.gov/MapClick.php?lat=42.2634&lon=-71.8022
+- BeautifulSoup library is used for scarping the NWS page.
 
-- Open this URL in a Firefox or Chrome browser. Locate the information that is being outputted in our script. Right click on this and select the Inspect Element option. This will launch the Inspector window that helps locate different elements on the page.
+- Then one needs to locate the items that must be scraped. The `forecast-tombstone` class in the `li` tag contains the weather forecast information. 
 
-- Notice that all forecast containers in this section are located in the `forecast-tombstone` class inside the `li` tag. In order to scrape multiple elements listed under the same class name, we utilize the `findAll()` function from BeautifulSoup. The tag and class names are required arguments for this function.
-
-### Edit the NWS_ WeatherForecast.py script to add the following functionality:
-1. Take latitude and longitude values as inputs in decimal degrees from user
-
-2.	Convert the latitude and longitude values to strings to generate the URL for the selected location. Pass this URL as an argument in the `get()` request.
-
-3.	The returned forecast information did not preserve its spacing during the scraping process. Using the `replace()` function, fix any spacing issues with the output
-
-4.	Convert the final output to uppercase
-
-Remember to update your file to include comments and documentation in your script to tell me what it’s doing!
+- Since multiple elements are being scraped under the `forecast-tombstone` class a loop is used to obtain all the text that gives information on the weather forecast. 
+- To have the right spacing, one can `replace()` the output with a formatted result.
+- Finally, one can further use a string manipulation technique to generate the output in uppercase. 
 
 ## Final Project: Script 2
-### Your Chosen Assignment
-For this script, you will complete the assignment that you have proposed, which involves creating a new script, completing an online tutorial, or modifying a previous exercise or lab. You'll need to save that file or notebook into this repo: be sure to include comments and documentation in your script to tell me what it’s doing!
+### Web-visualization using Plotly
+In Script 2, I had the opportunity to use an open-source library which creates interactive charts on Python called **plotly**. I follow a tutorial (https://towardsdatascience.com/how-to-create-a-plotly-visualization-and-embed-it-on-websites-517c1a78568b) to create an interactive chart which shows the life expectancy of the continents in the world given their gross domestic product (GDP) per capita in 2007. This script also has comments but can be broken down in the following simple steps:
 
-## Final Project: Documentation
-### Changing this README
-Your write-up will be here, on this README page. You will need to edit this page with your new text: you do **not** need to keep these instructions on your README! 
+- First one should install and import plotly express so that we can display the visualizations in a python notebook. 
+- Then one uses data from Gapminder (https://www.gapminder.org/) of the countries in the world in 2007, grouped as continents and weighted by their population. The data is also attached in a CVS file in this repository. 
+- To embed the figure created, one must install and import `chart_studio` and create an account in https://chart-studio.plotly.com/.
+- Finally one pushes the visualization to chart studio and uses the embed code so this also appears on a website hosted by GitHub pages: https://nayantarab.github.io/Web_Visualization/     
+ 
+The chart shows that life expectancy is an increasing function of GDP per capita. The colors of the circles represent the continents while the size is the population. GDP per capita is one of the many measures to judge the well-being of an economy and is the total income of a country normalized by its population, while the life expectancy is measured in number of years a person lives in a country. By clicking on the figure, a page opens to the interactive diagram which shows that Japan has the highest life expectancy while the Democratic Republic of Congo (DRC) is the lowest. This is expected since an average person’s makes 30,000 local currency units (LCU) more in Japan compared to DRC. 
+
+
